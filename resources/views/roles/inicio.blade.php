@@ -6,6 +6,11 @@
     Listado de Roles
 @endsection
 @section('contenido')
+<div class="flex flex-row-reverse mb-2">
+    <a href="{{ route('roles.create') }}" class="p-2 font-bold text-white rounded bg-green-500 hover:bg-green-700">
+        <i class="fas fa-add mr-1"></i>NUEVO
+    </a>
+</div>
     <table class="min-w-full border border-gray-300 rounded-lg overflow-hidden">
         <thead class="bg-gray-100">
             <tr>
@@ -26,7 +31,18 @@
                         {{$item->color}}
                     </p>
                 </td>
-                <td class="px-4 py-2">Acciones</td>
+                <td class="px-4 py-2">
+                    <form method="POST" action="{{ route('roles.destroy', $item) }}">
+                        @csrf
+                        @method('DELETE')
+                        <a href="{{ route('roles.edit', $item) }}">
+                            <i class="fas fa-edit hover:text-xl mr-2"></i>
+                        </a>
+                        <button type="submit" onclick="return confirm('¿Borrar definitivamente el Post');">
+                            <i class="fas fa-trash hover:text-xl"></i> 
+                        </button>
+                    </form>
+                </td>
             </tr>
             @endforeach
         </tbody>
