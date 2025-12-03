@@ -12,7 +12,8 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        //
+        $empleados=Employee::with('department', 'roles')->orderBy('id', 'desc')->paginate(5);
+        return view('empleados.index', compact('empleados'));
     }
 
     /**
@@ -20,7 +21,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        //
+        return view('empleados.nuevo');
     }
 
     /**
