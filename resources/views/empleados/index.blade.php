@@ -44,14 +44,16 @@
                 </td>
 
                 <td class="px-6 py-4">
-                    <div class="flex space-x-3">
-                        <button class="px-3 py-1 text-xs bg-blue-600 text-white rounded hover:bg-blue-700 transition">
-                            Editar
+                   <form method="POST" action="{{ route('employees.destroy', $item) }}">
+                        @csrf
+                        @method('DELETE')
+                        <a href="{{ route('employees.edit', $item) }}">
+                            <i class="fas fa-edit mr-2 text-purple-400 text-xl hover:text-2xl"></i>
+                        </a>
+                        <button type="submit" onclick="return confirm('¿Borrar definitivamente el empleado')">
+                            <i class="fas fa-trash text-red-400 text-xl hover:text-2xl"></i>
                         </button>
-                        <button class="px-3 py-1 text-xs bg-red-600 text-white rounded hover:bg-red-700 transition">
-                            Eliminar
-                        </button>
-                    </div>
+                   </form>
                 </td>
             </tr>
             @endforeach
@@ -62,4 +64,5 @@
     </div>
 @endsection
 @section('misalertas')
+<x-mensajes />
 @endsection

@@ -49,4 +49,5 @@
     </table>
 @endsection
 @section('misalertas')
+<x-mensajes />
 @endsection
